@@ -1,0 +1,32 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class="row mt-3">
+        <div class="col-6 offset-3">
+            <form method="POST" action="/signup" class="needs-validation" novalidate>
+                <h4>Sign Up!</h4>
+                <br>
+                <div class="mb-3"> <!--Adding margin-bottom between divs-->
+                    <label for="username" class="form-label">Username</label> <!--Using Bootsrap "form control" styling-->
+                    <input name="username" class="form-control" placeholder="Enter Username" id="username" required> <!--implementing "required" displays different default message set by different browser. thus, to maintain uniformity, using bootstrap instead of browser required-->
+                    <div class="invalid-feedback">Please enter a valid username!</div> <!-- adding div w/ "invalid-feedback" class to display custom message from bootsrap styling-->
+                    <div class="valid-feedback">Looks Good!</div> <!-- adding div w/ "valid-feedback" class to display custom message from bootsrap styling-->
+                </div>
+                <div class="mb-3"> <!--Adding margin-bottom between divs-->
+                    <label for="email" class="form-label">Email ID</label> <!--Using Bootsrap "form control" styling-->
+                    <input name="email" class="form-control" placeholder="Enter Email" id="email" required> <!--implementing "required" displays different default message set by different browser. thus, to maintain uniformity, using bootstrap instead of browser required-->
+                    <div class="invalid-feedback">Please enter a valid email!</div> <!-- adding div w/ "invalid-feedback" class to display custom message from bootsrap styling-->
+                    <div class="valid-feedback">Looks Good!</div> <!-- adding div w/ "valid-feedback" class to display custom message from bootsrap styling-->
+                </div>
+                <div class="mb-3"> <!--Adding margin-bottom between divs-->
+                    <label for="password" class="form-label">Password</label> <!--Using Bootsrap "form control" styling-->
+                    <input name="password" class="form-control" placeholder="Enter password" id="password" type="password" required> <!--implementing "required" displays different default message set by different browser. thus, to maintain uniformity, using bootstrap instead of browser required-->
+                    <div class="invalid-feedback">Please enter a valid password!</div> <!-- adding div w/ "invalid-feedback" class to display custom message from bootsrap styling-->
+                    <div class="valid-feedback">Looks Good!</div> <!-- adding div w/ "valid-feedback" class to display custom message from bootsrap styling-->
+                </div>
+                <button class="btn btn-success">Sign Up</button>
+
+            </form>
+        </div>
+    </div>
+</body>
+</html>

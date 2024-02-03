@@ -1,0 +1,64 @@
+<% layout("/layouts/boilerplate") %>
+<script> // The <script> HTML element is used to embed executable JavaScript code in HTML
+    const mapToken = "<%=process.env.MAP_TOKEN%>" // storing ejs accessable vairable in JS variable so it can be used in /public/map.js called at last line of show.ejs
+    const listing = <%-JSON.stringify(listing)%> // JSON.stringify() method converts JS objects into strings
+</script>
+<body>
+    <h3><%= listing.title %></h3>
+
+    <div class="card listing-card" style="width: 18rem;">
+        <img src="<%=listing.image.url%>" class="card-img-top show-img" alt="listing image">
+        <div class="card-body">
+          <p class="card-text"></p>
+        </div>
+    </div>
+
+    <ul>
+        <li>Owned by <i><%= listing.owner.username %></i></li>
+        <li><%= listing.description %></li>
+        <li>&#8377;<%= listing.price.toLocaleString("en-IN") %></li> <!-- toLocaleString : Converts Number type to String while following the local number system rules-->
+        <li><%= listing.location %></li>
+        <li><%= listing.country %></li>
+    </ul>
+    <br> 
+    <% if(currUser && currUser._id.equals(listing.owner._id)) { %> <!-- if statement to ensure that delete and edit only visible to listing owner -->
+    <form method="GET" action="/listings/<%=listing._id%>/edit">
+        <button>Edit</button>
+    </form>
+    <br>
+    <form method="POST" action="/listings/<%=listing._id%>?_method=DELETE">
+        <button>Delete</button>
+    </form>
+    <% } %>
+    <% if (currUser) { %>
+    <div class="mt-2">
+        <a href="/listings/<%=listing._id%>/reviews/form">Been here before? Leave a review.</a>
+    </div>
+    <% } %>
+    <hr>
+    <% if(listing.reviews.length > 0) { %>
+    <div class="row">
+        <h4 class="col-5 ms-3 mb-3">All Reviews</h4>
+        <% for(review of listing.reviews) { %>
+            <div class="card col-5 ms-3 mb-3">
+                <div class="card-body">
+                    <div class="card-title">@<%=review.author.username%></div>
+                    <p class="starability-result card-text" data-rating="<%=review.rating%>"></p>
+                    <div class="card-text mb-2"><%=review.comment%></div>
+                </div>
+                <% if(currUser && currUser._id.equals(review.author._id)) { %>
+                    <form method="POST" action="/listings/<%=listing._id%>/reviews/<%=review._id%>?_method=DELETE">
+                        <button class="btn btn-dark btn-sm mb-3">Delete</button>
+                    </form>
+                <% } %>
+            </div>
+        <% } %>
+    </div>
+    <% } %>
+    <div class="col-5 ms-3 mb-3">
+        <h3>Where you'll be</h3>
+    </div>
+    <div class="col-5 ms-3 mb-3" id="map"></div>
+</body>
+
+<script src="/js/map.js"></script>

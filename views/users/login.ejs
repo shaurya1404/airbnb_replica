@@ -1,0 +1,20 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <div class="row mt-3">
+        <div class="col-6 offset-3">
+            <form method="POST" action="/login" class="needs-validation" novalidate>
+                <h4>Login!</h4>
+                <br>
+                <div class="mb-3"> <!--Adding margin-bottom between divs-->
+                    <label for="username" class="form-label">Username</label> <!--Using Bootsrap "form control" styling-->
+                    <input name="username" class="form-control" placeholder="Enter Username" id="username" required> <!--implementing "required" displays different default message set by different browser. thus, to maintain uniformity, using bootstrap instead of browser required-->
+                </div>
+                <div class="mb-3"> <!--Adding margin-bottom between divs-->
+                    <label for="password" class="form-label">Password</label> <!--Using Bootsrap "form control" styling-->
+                    <input name="password" class="form-control" placeholder="Enter password" id="password" type="password" required> <!--implementing "required" displays different default message set by different browser. thus, to maintain uniformity, using bootstrap instead of browser required-->
+                </div>
+                <button class="btn btn-success">Login</button>
+            </form>
+        </div>
+    </div>
+</body>

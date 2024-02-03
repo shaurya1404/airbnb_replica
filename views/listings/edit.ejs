@@ -1,0 +1,50 @@
+<% layout("/layouts/boilerplate") %>
+<body>
+    <form method="POST" action="/listings/<%=listing._id%>?_method=PUT" novalidate class="needs-validation" enctype="multipart/form-data"><!-- "novalidate" to remove default browser validation message. needs-validation to apply "script.js" class to this form-->
+        <div class="row">
+            <div class="col-6 offset-3">
+                <br>
+                <h3>Edit Your Listing : </h3>
+                <div class="mb-3">
+                    <label for="title" class="form-label">Title</label>
+                    <input name="listing[title]" class="form-control" value="<%=listing.title%>" required><!--implementing "required" displays different default message set by different browser. thus, to maintain uniformity, using bootstrap instead of browser required-->
+                    <div class="invalid-feedback">Please enter a valid title!</div><!--adding div w/ "invalid-feedback" class to display custom message from bootsrap styling-->
+                    <div class="valid-feedback">Looks Good!</div><!--adding div w/ "valid-feedback" class to display custom message from bootsrap styling-->
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Description</label>
+                    <textarea name="listing[description]" class="form-control" required><%=listing.description%></textarea>
+                    <div class="invalid-feedback">Please enter a short description!</div>
+                    <div class="valid-feedback">Looks Good!</div>
+                </div>
+                <div class="mb-3">
+                    <label for="image" class="form-label">Upload New Image</label>
+                    <input name="listing[image]" class="form-control" value="<%=listing.image%>" type="file">
+                    <div class="valid-feedback">Looks Good!</div>
+                </div>
+                <div class="row">
+                    <div class="mb-3 col-md-6">
+                        <label for="price" class="form-label">Price</label>
+                        <input name="listing[price]" class="form-control" value="<%=listing.price%>" required>
+                        <div class="invalid-feedback">Please enter a valid price!</div>
+                        <div class="valid-feedback">Looks Good!</div>
+                    </div>
+                    <div class="mb-3 col-md-6">
+                        <label for="location" class="form-label">Location</label>
+                        <input name="listing[location]" class="form-control" value="<%=listing.location%>" required>
+                        <div class="invalid-feedback">Please enter a valid location!</div>
+                        <div class="valid-feedback">Looks Good!</div>
+                    </div>
+                </div>
+                <div class="mb-3">
+                    <label for="country" class="form-label">Country</label>
+                    <input name="listing[country]" class="form-control" value="<%=listing.country%>" required>
+                    <div class="invalid-feedback">Please enter a valid country name!</div>
+                    <div class="valid-feedback">Looks Good!</div>
+                </div>
+                <button class="btn btn-dark edit-btn">Edit</button>
+                <br><br>
+            </div>
+        </div>
+    </form>
+</body>
